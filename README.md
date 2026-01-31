@@ -8,6 +8,15 @@ Cette application a été créée pour apprendre Flutter par la pratique. Plutô
 
 ---
 
+## Aperçu de l'application
+
+<p align="center">
+  <img src="assets/screenshots/home.png" width="300" alt="Écran d'accueil">
+  <img src="assets/screenshots/favoris.png" width="300" alt="Écran favoris">
+</p>
+
+---
+
 ## Prérequis
 
 Avant de commencer, installe :
@@ -47,7 +56,8 @@ flutter_daily_focus/
 │       ├── home_screen.dart      # Écran d'accueil
 │       └── favorites_screen.dart # Écran favoris
 ├── assets/
-│   └── images/                # Images
+│   └── images/
+│       └── logo.png           # Logo de l'app
 ├── pubspec.yaml               # Configuration
 └── ...
 ```
@@ -183,7 +193,16 @@ class _MainScreenState extends State<MainScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Daily Focus'),
+        title: Row(
+          children: [
+            Image.asset(
+              'assets/images/logo.png',
+              height: 32,
+            ),
+            const SizedBox(width: 10),
+            const Text('Daily Focus'),
+          ],
+        ),
         backgroundColor: const Color(0xFF16213E),
         foregroundColor: Colors.white,
         elevation: 0,
@@ -232,6 +251,7 @@ class _MainScreenState extends State<MainScreen> {
 - `IndexedStack` → garde tous les écrans en mémoire, affiche celui sélectionné
 - `BottomNavigationBar` → barre de navigation en bas
 - `setState()` → dit à Flutter de redessiner l'écran
+- `Image.asset()` → affiche une image depuis le dossier assets
 
 ---
 
@@ -469,6 +489,37 @@ class FavoritesScreen extends StatelessWidget {
 - `ListView.builder` → crée une liste scrollable, optimisée pour les grandes listes
 - `Expanded` → prend tout l'espace disponible dans un Row/Column
 - Condition ternaire `condition ? siVrai : siFaux`
+
+---
+
+## Ajouter des images (assets)
+
+### 1. Créer le dossier
+Le dossier `assets/images/` doit être **à la racine** du projet (à côté de `lib/`, pas dedans).
+
+### 2. Déclarer dans pubspec.yaml
+```yaml
+flutter:
+  uses-material-design: true
+
+  assets:
+    - assets/images/
+```
+
+### 3. Utiliser dans le code
+```dart
+Image.asset(
+  'assets/images/logo.png',
+  height: 32,
+)
+```
+
+### 4. Après ajout d'une image
+```bash
+flutter clean
+flutter pub get
+flutter run
+```
 
 ---
 
