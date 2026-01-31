@@ -33,7 +33,16 @@ class _MainScreenState extends State<MainScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Daily Focus'),
+        title: Row(
+          children: [
+            Image.asset(
+              'assets/images/logo.png',
+              height: 32,
+            ),
+            const SizedBox(width: 10),
+            const Text('Daily Focus'),
+          ],
+        ),
         backgroundColor: const Color(0xFF16213E),
         foregroundColor: Colors.white,
         elevation: 0,
